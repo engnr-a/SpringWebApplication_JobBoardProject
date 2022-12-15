@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Feed Me BACK PLS</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body class="container">
+<nav class="navbar navbar-light bg-light">
+    <!--    shadow-sm-->
+
+    <div class="container">
+
+        <div>
+            <a class="navbar-brand me-0" th:href="@{/}">
+                <img
+                        th:src="@{images/logo1.png}"
+                        width="20"
+                        height="20"
+                        alt="logo"
+                        loading="lazy"
+                        style="margin-top: -1px;"
+                />
+            </a>
+            <a class="navbar-brand align-items-left display-6" th:href="@{/}" style="letter-spacing: .2rem;">kloubasaJobs</a>
+        </div>
+
+        <div>
+            <!--            <a class="btn btn-primary" th:href="@{/login}" role="button" style="border-radius : 0">Sign in</a>-->
+            <!--            <a class="btn btn-warning" th:href="@{/employerRegister}" role="button" style="border-radius : 0">Register</a>-->
+        </div>
+
+    </div>
+</nav>
+
+
+<hr style="color: darkgoldenrod"  class="mt-0">
+<div class="card">
+    <form th:action="@{/feedback}" method="post">
+        <h3>Say Something !</h3>
+        <div class="form-group">
+            <label for="exampleInput01">Name:</label>
+            <input type="text" class="form-control" id="exampleInput01" name="name"  >
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInput02">Email address</label>
+            <input type="email" class="form-control" id="exampleInput02" name="emailAddress"  >
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInput03">Your Comment:</label>
+            <textarea type="email" class="form-control" id="exampleInput03" name="feedBackComment"  ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInput04">Your profession:</label>
+            <select name="professionalSector">
+
+                    <option th:each="sector : ${professionalSector}"  th:value="${sector}" th:text="${sector}">
+                        Some Values
+                    </option>
+
+            </select>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+
+
+
+<footer class="bg-light mt-5">
+
+    <div class="container d-flex justify-content-center p-1">
+        <p class="small mt-1 mb-0">Found a bug, bad practice, improvement...?<a href="mailto:sholasuleiman@outlook.com"> Email me</a></p>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <p class="small mt-0">Zero copyright. Found something useful ? get the code from GitHub, use it, transfer it, share it...whatever.</p>
+    </div>
+
+</footer>
+</body>
+</html>

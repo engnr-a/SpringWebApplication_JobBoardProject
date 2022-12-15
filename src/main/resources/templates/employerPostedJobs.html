@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Postings</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+
+    <div class="container">
+
+        <div>
+            <a class="navbar-brand me-0" th:href="@{/userHome}">
+                <img
+                        th:src="@{images/logo1.png}"
+                        width="20"
+                        height="20"
+                        alt="logo"
+                        loading="lazy"
+                        style="margin-top: -1px;"
+                />
+            </a>
+            <a class="navbar-brand align-items-left display-6" th:href="@{/userHome}" style="letter-spacing: .2rem;">kloubasaJobs</a>
+        </div>
+
+
+
+        <div class="row gap-0">
+            <div class="col-md-6">
+                <a class="btn btn-primary" th:href="@{/userHome}" role="button" style="border-radius : 2px">Home</a>
+            </div>
+            <div class="col-md-6">
+                <form method="POST" th:action="@{/logout}">
+                    <input type="submit" value="Logout" class="btn btn-warning" style="border-radius : 2px"/>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</nav>
+<hr style="color: darkgoldenrod"  class="mt-0">
+
+<div class="container mt-3">
+    <hr style="color: darkgoldenrod">
+    <h5 class="text-primary">All Posted Vacancies</h5>
+    <table class="container table mt-2" >
+        <thead class="thead-light">
+        <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Seniority</th>
+            <th>Actions</th>
+
+        </tr>
+
+        </thead>
+
+        <tr th:each="posting : ${myPostings}">
+            <td th:text="${posting.postDate}"></td>
+            <td th:text="${posting.title}"></td>
+            <td th:text="${posting.location}"></td>
+            <td th:text="${posting.experienceLevel}"></td>
+            <td>
+                <a type="button" class="btn btn-outline-primary" th:href="@{/userHome/myposting/respoonsetomyposting(id=${posting.jobId})}"
+                   style="border-radius : 0">Responses</a>
+<!--                <a type="button" th:href="@{/apply(id=${job.jobId})}"  class="btn btn-outline-primary">Apply</a>-->
+
+                <button type="button" class="btn btn-outline-info" style="border-radius : 0">Edit</button>
+                <button type="button" class="btn btn-danger" style="border-radius : 0">Delete</button>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+
+</body>
+</html>

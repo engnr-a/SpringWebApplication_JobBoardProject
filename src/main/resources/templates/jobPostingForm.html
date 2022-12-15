@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      namespace-uri="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Post New Vacancy</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/3283crpqxa253vaybb537cum0ioc39a7y3hnp94f9f9w18q5/tinymce/6/tinymce.min.js"
+            referrerpolicy="origin"></script>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+
+    <div class="container">
+
+        <div>
+            <a class="navbar-brand me-0" th:href="@{/userHome}">
+                <img
+                        th:src="@{images/logo1.png}"
+                        width="20"
+                        height="20"
+                        alt="logo"
+                        loading="lazy"
+                        style="margin-top: -1px;"
+                />
+            </a>
+            <a class="navbar-brand align-items-left display-6" th:href="@{/userHome}" style="letter-spacing: .2rem;">kloubasaJobs</a>
+        </div>
+
+
+
+        <div class="row gap-0">
+            <div class="col-md-6">
+                <a class="btn btn-primary" th:href="@{/userHome}" role="button" style="border-radius : 2px">Home</a>
+            </div>
+            <div class="col-md-6">
+                <form method="POST" th:action="@{/logout}">
+                    <input type="submit" value="Logout" class="btn btn-warning" style="border-radius : 2px"/>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</nav>
+<hr style="color: darkgoldenrod"  class="mt-0">
+
+
+<section class="vh-60 mt-0">
+    <div class="container py-1 h-80 mt-0">
+<!--        -->
+        <div class = "row d-flex justify-content-center align-items-center h-80 mt-0">
+<!--           -->
+            <div class="col col-xl-8 mt-0">
+                <div class="card mt-0 mb-2" style="border-radius : 0">
+                    <div class="col mt-0">
+                        <div>
+                            <div class="card-body text-black mt-0">
+                                <form th:action="@{/newjob}"  th:object="${jobs}" method="POST" class="mt-0">
+                                    <h4 class="mt-0 mb-3 text-center">New Vacancy</h4>
+                                    <div class="form-floating mb-3 mt-1" style="border-radius : 0">
+                                        <input type="text" class="form-control" name="title" placeholder="name@example.com" th:field="*{title}">
+                                        <label for="floatingInput">Job Title</label>
+
+                                        <span class="small" style="color:red"  th:if="${#fields.hasErrors('title')}"  th:errors="*{title}">Title Error</span>
+
+                                    </div>
+
+
+                                    <div class="form-floating mb-3" style="border-radius : 0">
+
+                                        <textarea class="form-control" placeholder="Detail Job Description" id="floatingTextarea" name="jobDescription" th:field="*{jobDescription}" style="border-radius : 0"></textarea>
+                                        <label for="floatingTextarea">Detail Job Description</label>
+
+                                        <span class="small" style="color:red"  th:if="${#fields.hasErrors('jobDescription')}" th:errors="*{jobDescription}">Description Error</span>
+
+                                    </div>
+
+                                    <script>
+                                        tinymce.init({
+                                            selector: 'textarea',
+                                            plugins: 'link lists wordcount',
+                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                                            tinycomments_mode: 'embedded',
+                                            tinycomments_author: 'Author name',
+                                            mergetags_list: [
+                                                { value: 'First.Name', title: 'First Name' },
+                                                { value: 'Email', title: 'Email' },
+                                            ]
+                                        });
+                                    </script>
+
+
+                                    <div class="form-inline">
+
+                                        <div class="form-floating mb-3">
+                                            <select class="form-select" id="floatingSelect" aria-label="Industrial Sector" name="requiredEducation">
+                                                <div th:each="reqEducation : ${requiredEducation}">
+                                                    <option th:value="${reqEducation}" th:text="${reqEducation}"></option>
+                                                </div>
+                                            </select>
+
+                                            <label for="floatingSelect">Required Education Level</label>
+                                            <!--                                        Validation-->
+                                            <!--                                        <span class="validationError"  th:if="${#fields.hasErrors('industrialSector')}"  th:errors="*{industrialSector}">Sector Error</span>-->
+                                            <!--                                        EndOfValidation-->
+                                        </div>
+
+
+
+                                        <div class="form-floating mb-3">
+                                            <select class="form-select" id="floatingSelect" aria-label="Industrial Sector" name="requiredLanguage">
+                                                <div th:each="reqLanguage : ${requiredLanguage}">
+                                                    <option th:value="${reqLanguage}" th:text="${reqLanguage}"></option>
+                                                </div>
+                                            </select>
+
+                                            <label for="floatingSelect">Required Language</label>
+                                            <!--                                        Validation-->
+                                            <!--                                        <span class="validationError"  th:if="${#fields.hasErrors('industrialSector')}"  th:errors="*{industrialSector}">Sector Error</span>-->
+                                            <!--                                        EndOfValidation-->
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="floatingSelect" aria-label="Industrial Sector" name="experienceLevel">
+                                            <div th:each="expLevel : ${experienceLevel}">
+                                                <option th:value="${expLevel}" th:text="${expLevel}"></option>
+                                            </div>
+                                        </select>
+
+                                        <label for="floatingSelect">Experience Level</label>
+                                        <!--                                        Validation-->
+                                        <!--                                        <span class="validationError"  th:if="${#fields.hasErrors('industrialSector')}"  th:errors="*{industrialSector}">Sector Error</span>-->
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+
+
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="floatingSelect" aria-label="Industrial Sector" name="industrialSector">
+                                            <div th:each="sectors : ${industrialSector}">
+                                                <option th:value="${sectors}" th:text="${sectors}">One</option>
+                                            </div>
+                                        </select>
+
+                                        <label for="floatingSelect">Sector Category</label>
+                                        <!--                                        Validation-->
+                                        <!--                                        <span class="validationError"  th:if="${#fields.hasErrors('industrialSector')}"  th:errors="*{industrialSector}">Sector Error</span>-->
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Phone number" name="salaryBand">
+                                        <label for="floatingInput">Salary Band</label>
+                                        <small id="emailHelp" class="form-text text-muted">e.g. 50,000 - 100,000 Kč, 20,000 Kč</small>
+                                        <!--                                        <span class="validationError"  th:if="${#fields.hasErrors('phone')}"  th:errors="*{phone}">Phone Error</span>-->
+                                    </div>
+
+
+                                    <!--        <div class="row form-floating">-->
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="location">
+                                            <div th:each="city : ${cities}">
+                                                <option th:value="${city}" th:text="${city}">One</option>
+                                            </div>
+                                        </select>
+                                        <label for="floatingSelect">Location</label>
+                                        <!--                                        Validation-->
+<!--                                        <span class="validationError"  th:if="${#fields.hasErrors('city')}"  th:errors="*{city}">Sector Error</span>-->
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+
+                                    <button type="submit" class="btn btn btn-warning col-md-12 mb-2 mt-2" style="border-radius :2px">Submit</button><br>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="bg-light mt-5">
+
+    <div class="container d-flex justify-content-center p-1">
+        <p class="small mt-1 mb-0">Found a bug, bad practice, improvement...?<a href="mailto:sholasuleiman@outlook.com"> Email me</a></p>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <p class="small mt-0">Zero copyright. Found something useful ? get the code from GitHub, use it, transfer it, share it...whatever.</p>
+    </div>
+
+</footer>
+</body>
+</html>

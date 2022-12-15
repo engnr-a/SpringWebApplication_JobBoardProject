@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  >
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+
+    <div class="container">
+
+        <div>
+            <a class="navbar-brand me-0" th:href="@{/userHome}">
+                <img
+                        th:src="@{images/logo1.png}"
+                        width="20"
+                        height="20"
+                        alt="logo"
+                        loading="lazy"
+                        style="margin-top: -1px;"
+                />
+            </a>
+            <a class="navbar-brand align-items-left display-6" th:href="@{/userHome}" style="letter-spacing: .2rem;">kloubasaJobs</a>
+        </div>
+
+
+        <div class="row">
+<!--            <div class="col-md-6">-->
+<!--                <a class="btn btn-primary" href="#" role="button">My Account</a>-->
+<!--            </div>-->
+            <div class="col-md-6">
+                <form method="POST" th:action="@{/logout}">
+                    <input type="submit" value="Logout" class="btn btn-warning" style="border-radius : 2px"/>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</nav>
+<hr style="color: darkgoldenrod"  class="mt-0">
+
+<br>
+<div class="container">
+    <div class="card" style="border-radius : 2px">
+        <img class="card-img-top" th:src="@{images/background1.png}" alt="Card image cap"  width="1149" height="180" style="border-radius : 2px">
+        <div class="card-body">
+            <h5 class="card-title">Welcome <span class="display-8" th:text="${employer.getOrganizationName}"></span></h5>
+            <p class="card-text">Portal actions</p>
+            <a class="btn btn-outline-primary" th:href="@{/newjob}" style="border-radius : 2px">New Vacancy</a>
+            <a th:href="@{/userHome/myposting}" class="card-link btn btn-outline-info px-3" style="border-radius : 2px">Posted Vacancies</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

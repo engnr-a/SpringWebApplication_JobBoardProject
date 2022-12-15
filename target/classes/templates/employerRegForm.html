@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Employer Registration</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-grig.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-grid.rtl.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-utilities.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-utilities.rtl.min.css}" rel="stylesheet">
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+
+</head>
+<body class="container">
+
+<nav class="navbar navbar-light bg-light">
+    <!--    shadow-sm-->
+
+    <div class="container">
+
+        <div>
+            <a class="navbar-brand me-0" th:href="@{/}">
+                <img
+                        th:src="@{images/logo1.png}"
+                        width="20"
+                        height="20"
+                        alt="logo"
+                        loading="lazy"
+                        style="margin-top: -1px;"
+                />
+            </a>
+            <a class="navbar-brand align-items-left display-6" th:href="@{/}" style="letter-spacing: .2rem;">kloubasaJobs</a>
+        </div>
+
+<!--        <div>-->
+<!--            <a class="btn btn-primary" th:href="@{/login}" role="button" style="border-radius : 0">Sign in</a>-->
+<!--            <a class="btn btn-warning" th:href="@{/employerRegister}" role="button" style="border-radius : 0">Register</a>-->
+<!--        </div>-->
+
+    </div>
+
+</nav>
+<hr style="color: darkgoldenrod"  class="mt-0">
+
+
+<div id="main-wrapper" class="container" style="border-radius : 0">
+    <div class="row justify-content-center">
+        <div class="col-xl-10">
+            <div class="card border-0">
+                <div class="card-body p-0">
+                    <div class="row no-gutters">
+
+
+                        <div class="col-lg-6">
+                            <div class="p-4">
+                                <div class="mb-3">
+                                    <h3 class="h4 font-weight-bold text-theme">Employer Registration</h3>
+                                </div>
+
+                                <h6 class="h5 mb-4">Happy to have you try out my app !</h6>
+
+                                <form th:action="@{/employerRegister}" th:object="${employerRegistrationForm}" method="POST">
+
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" name="username" th:field="*{username}"   id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">Username</label>
+                                        <small id="floatingInput" class="form-text text-muted">Minimum of 4 characters.</small>
+                                        <!--                                        Validation-->
+                                        <span class="validationError"  th:if="${#fields.hasErrors('username')}"  th:errors="*{username}">Username Error</span>
+
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="floatingInput" name="password" th:field="*{password}"   placeholder="Password">
+                                        <label for="floatingInput">Password</label>
+                                        <small id="floatingInput" class="form-text text-muted">Minimum of 8 characters.</small>
+                                        <!--                                        Validation-->
+                                        <span class="validationError"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="floatingInput" placeholder="Email address" th:field="*{emailAddress}" name="emailAddress">
+                                        <label for="floatingInput">Email address</label>
+                                        <small id="emailHelp" class="form-text text-muted mb">Dummy but valid email recommended.</small>
+                                        <!--                                        Validation-->
+                                        <span class="validationError"  th:if="${#fields.hasErrors('emailAddress')}"  th:errors="*{emailAddress}">Email Error</span>
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Phone number" th:field="*{phone}" name="phone">
+                                        <label for="floatingInput" class="sr-only">Phone number</label>
+                                        <small id="emailHelp" class="form-text text-muted">Must be 10 digits long without +420.</small>
+                                        <span class="validationError"  th:if="${#fields.hasErrors('phone')}"  th:errors="*{phone}">Phone Error</span>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Organization name" name="organizationName">
+                                        <label for="floatingInput">Organization name</label>
+                                        <span class="validationError"  th:if="${#fields.hasErrors('organizationName')}"  th:errors="*{organizationName}">Email Error</span>
+                                    </div>
+
+
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="floatingSelect" aria-label="Industrial Sector" th:field="*{industrialSector}" name="industrialSector">
+                                            <div th:each="sectors : ${industrialSector}">
+                                                <option th:value="${sectors}" th:text="${sectors}">One</option>
+                                            </div>
+                                        </select>
+
+                                        <label for="floatingSelect">Industrial Sector</label>
+
+                                        <!--                                        Validation-->
+                                        <span class="validationError"  th:if="${#fields.hasErrors('industrialSector')}"  th:errors="*{industrialSector}">Sector Error</span>
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control"  name="street" th:field="*{street}" id="floatingInput"  placeholder="street">
+                                        <label for="floatingInput">Address</label>
+
+                                        <!--                                        Validation-->
+                                        <span class="validationError"  th:if="${#fields.hasErrors('street')}"  th:errors="*{street}">Address Error</span>
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+                                    <!--        <div class="row form-floating">-->
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" th:field="*{city}" name="city">
+                                            <div th:each="city : ${cities}">
+                                                <option th:value="${city}" th:text="${city}">One</option>
+                                            </div>
+                                        </select>
+                                        <label for="floatingSelect">City</label>
+                                        <!--                                        Validation-->
+                                        <span class="validationError"  th:if="${#fields.hasErrors('city')}"  th:errors="*{city}">Sector Error</span>
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Zip" th:field="*{zip}" name="zip">
+                                        <label for="floatingInput">Zip Code</label>
+                                        <!--                                        Validation-->
+                                        <span class="validationError"  th:if="${#fields.hasErrors('zip')}"  th:errors="*{zip}">Zip Error</span>
+                                        <!--                                        EndOfValidation-->
+                                        <small id="emailHelp" class="form-text text-muted mb">Czech zip code. 5 digits without space.</small>
+                                    </div>
+
+
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault" th:field="*{dataResponsibility}"  name="dataResponsibility">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            I agree that this is not an actual organization.
+                                        </label><br>
+                                        <!--                                        Validation-->
+                                        <span class="validationError"  th:if="${#fields.hasErrors('dataResponsibility')}"  th:errors="*{dataResponsibility}">Sector Error</span>
+                                        <!--                                        EndOfValidation-->
+                                    </div>
+
+                                    <button type="submit" class="btn btn btn-warning col-md-12 mb-3" style="border-radius : 2px">Register</button><br>
+
+                                    Already have an account ? <a th:href="@{/login}" class="text-primary ml-1">Sign in</a>
+                                </form>
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div>
+                                <img
+                                        th:src="@{images/KB.jpg}" alt="logo" class="rounded mx-auto d-block"
+                                        style="width: 400px; height: 800px; margin-top:100px; border: none;"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end card-body -->
+            </div>
+
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- Row -->
+</div>
+
+
+
+<footer class="bg-light mt-5">
+
+    <div class="container d-flex justify-content-center p-1">
+        <p class="small mt-1 mb-0">Found a bug, bad practice, improvement...?<a href="mailto:sholasuleiman@outlook.com"> Email me</a></p>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <p class="small mt-0">Zero copyright. Found something useful ? get the code from GitHub, use it, transfer it, share it...whatever.</p>
+    </div>
+
+</footer>
+
+
+</body>
+</html>

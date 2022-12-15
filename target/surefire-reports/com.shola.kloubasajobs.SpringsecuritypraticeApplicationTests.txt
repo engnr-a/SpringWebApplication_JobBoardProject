@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.shola.kloubasajobs.SpringsecuritypraticeApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.427 s - in com.shola.kloubasajobs.SpringsecuritypraticeApplicationTests
