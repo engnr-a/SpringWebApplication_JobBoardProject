@@ -5,20 +5,20 @@ by employers to advertise their job vacancies to job seekers. Job seekers can us
 Some well-known job board sites are Indeed, Glassdoor, and Careerjet to name a few._"
 
 While I am not trying to create the next Glassdoor or Indeed or Job.cz (I mean I would
-prefer to create something much greater and better), this project is a web application where employers/organizations can register as a users/employers and post job vacancies, job seekers can view, search and of course, apply and submit their resumes to posted/advertised job vanacies. Registered employers can not only view their posted vacancies but they can also review responses to such vacancies and download submitted resumes.
+prefer to create something much greater and better), this project is a web application where employers/organizations can register as users/employers and post job vacancies, job seekers can view, search and of course, apply and submit their resumes to posted/advertised job vacancies. Registered employers can not only view their posted vacancies but they can also review responses to such vacancies and download submitted resumes.
 
 
 ## Technologies
 
-This project is based almost entired in Java and Java-based frameworks such as:
+This project is based almost entirely in Java and Java-based frameworks such as:
 1. Core Java
 2. Core Spring (IoC container)
-3. Spring Boot (to simplify Spring configuaration, bean definition/registry/e.t.c, servlet engine)
+3. Spring Boot (to simplify Spring configuration, bean definition/registry/e.t.c, servlet engine)
 4. Spring MVC (the core web application backing framework.)
-5. Spring Security (mainly for registeration, authentication and authorization of employers/organizations)
+5. Spring Security (mainly for registration, authentication and authorization of employers/organizations)
 6. Spring Data (provides APIs for seamlessly working with Hibernate which provides implementation of Java Persistence API (JPA)
-7. Thymeleaf (a Java server-side template engine. JSP was initially used, however thymeleaf was later favord due to flexibility. You can see my other project on JSP.
-8. Boostrap (for CSS classes in presentation layer)
+7. Thymeleaf (a Java server-side template engine. JSP was initially used, however thymeleaf was later favored due to flexibility. You can see my other project on JSP.
+8. Bootstrap (for CSS classes in presentation layer)
 9. MySQL 
 
 ## How To Use
